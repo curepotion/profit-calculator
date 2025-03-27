@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>財務計算器</title>
+  <!-- 引入 Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 引入 Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- 引入自定義 CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- 側邊欄 -->
+    <div class="sidebar">
+      <button id="sidebar-toggle" class="sidebar-toggle" title="切換側邊欄">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="sidebar-header">
+        <h4>計算工具</h4>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="index.html"><i class="fas fa-home me-2"></i>首頁</a></li>
+        <li><a href="index.html"><i class="fas fa-calculator me-2"></i>利潤計算器</a></li>
+        <li><a href="kelly.html"><i class="fas fa-chart-line me-2"></i>Kelly準則</a></li>
+        <li><a href="forex.html"><i class="fas fa-dollar-sign me-2"></i>外匯計算器</a></li>
+        <li><a href="finance.html" class="active"><i class="fas fa-briefcase me-2"></i>財務計算器</a></li>
+        <li><a href="#"><i class="fas fa-cog me-2"></i>設定</a></li>
+        <li><a href="#"><i class="fas fa-question-circle me-2"></i>幫助</a></li>
+      </ul>
+    </div>
+
+    <!-- 主要內容區 -->
+    <div class="main-content">
+      <div class="container">
+        <div class="profit-generator">
+          <h2 class="text-center mb-4">企業財務計算器</h2>
+          
+          <div class="finance-container">
+            <!-- 計算工具側欄 -->
+            <div class="finance-sidebar">
+              <div class="card-container mb-4">
+                <h5 class="section-title">計算指標</h5>
+                <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
+                  <button class="nav-link active" id="v-pills-bep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bep" type="button" role="tab">
+                    <i class="fas fa-balance-scale me-2"></i>損益平衡點
+                  </button>
+                  <button class="nav-link" id="v-pills-gpm-tab" data-bs-toggle="pill" data-bs-target="#v-pills-gpm" type="button" role="tab">
+                    <i class="fas fa-chart-pie me-2"></i>毛利率
+                  </button>
+                  <button class="nav-link" id="v-pills-npm-tab" data-bs-toggle="pill" data-bs-target="#v-pills-npm" type="button" role="tab">
+                    <i class="fas fa-chart-line me-2"></i>淨利率
+                  </button>
+                </div>
+                
+                <div class="info-box mt-4">
+                  <h6><i class="fas fa-info-circle me-2"></i>計算說明</h6>
+                  <p class="info-text" id="calculation-info">
+                    損益平衡點是企業收入與成本相等時的銷售量或金額，計算方式有兩種：按銷售量計算或按銷售額計算。
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 主要計算區 -->
+            <div class="finance-main">
+              <div class="tab-content" id="v-pills-tabContent">
+                
+                <!-- 損益平衡點計算 -->
+                <div class="tab-pane fade show active" id="v-pills-bep" role="tabpanel">
+                  <div class="card-container">
+                    <h5 class="section-title">損益平衡點計算</h5>
+                    <div class="calculator-container">
+                      <div class="simple-explanation mb-3">
+                        <div class="explanation-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="explanation-text">
+                          <p>💡 <strong>簡單來說：</strong>這個工具可以告訴你要賣出多少產品才能不賠錢。</p>
+                          <p>就像開個檸檬汁攤位，你需要知道賣幾杯才能回收成本！</p>
+                        </div>
+                      </div>
+                      
+                      <div class="formula-display mb-4">
+                        <div class="formula-title">簡易公式</div>
+                        <div class="formula-content">
+                          <div class="formula-block">
+                            <div class="formula-text">要賣出的數量 = <span class="formula-fraction"><span class="numerator">固定支出</span><span class="denominator">每件賺到的錢</span></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                          <label for="fixed-cost" class="form-label">每月固定支出 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="例如：房租、水電費、員工薪水等固定花費"></i></label>
+                          <input type="number" class="form-control" id="fixed-cost" min="0" value="10000">
+                          <div class="form-text text-light">例如：月租金 8,000 元 + 水電 2,000 元</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="unit-price" class="form-label">每個產品售價 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="你賣出一個產品能收到多少錢"></i></label>
+                          <input type="number" class="form-control" id="unit-price" min="0" value="100">
+                          <div class="form-text text-light">例如：一個蛋糕賣 100 元</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="unit-variable-cost" class="form-label">每個產品成本 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="製作一個產品需要花多少錢"></i></label>
+                          <input type="number" class="form-control" id="unit-variable-cost" min="0" value="40">
+                          <div class="form-text text-light">例如：一個蛋糕材料費 40 元</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="contribution-margin-ratio" class="form-label">每個產品賺的比例 (%)</label>
+                          <input type="number" class="form-control" id="contribution-margin-ratio" min="0" max="100" readonly>
+                          <div class="form-text text-light">自動計算：賺的錢÷售價</div>
+                        </div>
+                      </div>
+                      
+                      <div class="d-grid">
+                        <button id="calculate-bep" class="btn btn-gold mb-4">計算結果</button>
+                      </div>
+                      
+                      <div class="results mt-4">
+                        <h5 class="text-center mb-3">計算結果</h5>
+                        <div class="result-grid bep-results">
+                          <div class="result-item">
+                            <span>每個產品賺 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每賣出一個產品，你能賺到的錢"></i></span>
+                            <span id="contribution-margin" class="gold-text">0</span>
+                            <div class="form-text text-light">售價 - 成本</div>
+                          </div>
+                          <div class="result-item">
+                            <span>賺錢比例 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每個產品的售價中，有多少比例是你賺到的"></i></span>
+                            <span id="contribution-ratio-result" class="gold-text">0%</span>
+                            <div class="form-text text-light">賺的錢 ÷ 售價</div>
+                          </div>
+                          <div class="result-item">
+                            <span>至少要賣幾個 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="你需要賣出的最少數量，才能不賠錢"></i></span>
+                            <span id="break-even-units" class="white-text">0 個</span>
+                            <div class="form-text text-light">固定支出 ÷ 每個賺的錢</div>
+                          </div>
+                          <div class="result-item">
+                            <span>至少要賺多少錢 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="你需要達到的最少銷售額，才能不賠錢"></i></span>
+                            <span id="break-even-revenue" class="white-text">0 元</span>
+                            <div class="form-text text-light">固定支出 ÷ 賺錢比例</div>
+                          </div>
+                        </div>
+                        
+                        <div class="bep-analysis mt-4">
+                          <h6 class="mb-3">簡易分析</h6>
+                          <div class="analysis-container p-3 rounded">
+                            <p id="bep-analysis-text">請輸入數據並計算</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 毛利率計算 -->
+                <div class="tab-pane fade" id="v-pills-gpm" role="tabpanel">
+                  <div class="card-container">
+                    <h5 class="section-title">毛利率計算</h5>
+                    <div class="calculator-container">
+                      <div class="simple-explanation mb-3">
+                        <div class="explanation-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="explanation-text">
+                          <p>💡 <strong>簡單來說：</strong>這個工具可以告訴你每賺100元，扣掉成本後能留下多少錢。</p>
+                          <p>就像賣100元的棒棒糖，如果成本是40元，那毛利率就是60%！</p>
+                        </div>
+                      </div>
+                      
+                      <div class="formula-display mb-4">
+                        <div class="formula-title">簡易公式</div>
+                        <div class="formula-content">
+                          <div class="formula-block">
+                            <div class="formula-text">毛利率 = <span class="formula-fraction"><span class="numerator">賺到的錢</span><span class="denominator">總收入</span></span> × 100%</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                          <label for="total-revenue" class="form-label">總收入 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="賣東西總共收到多少錢"></i></label>
+                          <input type="number" class="form-control" id="total-revenue" min="0" value="10000">
+                          <div class="form-text text-light">例如：一個月賣出的所有商品總金額</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="cogs" class="form-label">總成本 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="製作商品花了多少錢"></i></label>
+                          <input type="number" class="form-control" id="cogs" min="0" value="4000">
+                          <div class="form-text text-light">例如：製作所有商品的材料費</div>
+                        </div>
+                      </div>
+                      
+                      <div class="d-grid">
+                        <button id="calculate-gpm" class="btn btn-gold mb-4">計算結果</button>
+                      </div>
+                      
+                      <div class="results mt-4">
+                        <h5 class="text-center mb-3">計算結果</h5>
+                        <div class="result-grid gpm-results">
+                          <div class="result-item">
+                            <span>賺到的錢 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="扣除成本後剩下的錢"></i></span>
+                            <span id="gross-profit" class="gold-text">0 元</span>
+                            <div class="form-text text-light">總收入 - 總成本</div>
+                          </div>
+                          <div class="result-item">
+                            <span>毛利率 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每賺100元中有多少是純賺的"></i></span>
+                            <span id="gross-profit-margin" class="white-text">0%</span>
+                            <div class="form-text text-light">(賺到的錢 ÷ 總收入) × 100%</div>
+                          </div>
+                        </div>
+                        
+                        <div class="gpm-analysis mt-4">
+                          <h6 class="mb-3">簡易分析</h6>
+                          <div class="analysis-container p-3 rounded">
+                            <p id="gpm-analysis-text">請輸入數據並計算</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 淨利率計算 -->
+                <div class="tab-pane fade" id="v-pills-npm" role="tabpanel">
+                  <div class="card-container">
+                    <h5 class="section-title">淨利率計算</h5>
+                    <div class="calculator-container">
+                      <div class="simple-explanation mb-3">
+                        <div class="explanation-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="explanation-text">
+                          <p>💡 <strong>簡單來說：</strong>這個工具可以告訴你扣除所有花費後，最終能留在口袋的錢佔總收入的比例。</p>
+                          <p>就像賣100元的冰淇淋，扣掉材料費、店租、人工後，如果剩下15元，淨利率就是15%！</p>
+                        </div>
+                      </div>
+                      
+                      <div class="formula-display mb-4">
+                        <div class="formula-title">簡易公式</div>
+                        <div class="formula-content">
+                          <div class="formula-block">
+                            <div class="formula-text">淨利率 = <span class="formula-fraction"><span class="numerator">最終賺到的錢</span><span class="denominator">總收入</span></span> × 100%</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                          <label for="net-revenue" class="form-label">總收入 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="賣東西總共收到多少錢"></i></label>
+                          <input type="number" class="form-control" id="net-revenue" min="0" value="10000">
+                          <div class="form-text text-light">例如：一個月賣出的所有商品總金額</div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="total-cost" class="form-label">所有支出 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="所有花費的總和"></i></label>
+                          <input type="number" class="form-control" id="total-cost" min="0" value="8500">
+                          <div class="form-text text-light">例如：材料費+房租+水電+人工+稅金等</div>
+                        </div>
+                      </div>
+                      
+                      <div class="d-grid">
+                        <button id="calculate-npm" class="btn btn-gold mb-4">計算結果</button>
+                      </div>
+                      
+                      <div class="results mt-4">
+                        <h5 class="text-center mb-3">計算結果</h5>
+                        <div class="result-grid npm-results">
+                          <div class="result-item">
+                            <span>最終賺到的錢 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="扣除所有支出後剩下的錢"></i></span>
+                            <span id="net-profit" class="gold-text">0 元</span>
+                            <div class="form-text text-light">總收入 - 所有支出</div>
+                          </div>
+                          <div class="result-item">
+                            <span>淨利率 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每賺100元中最終能留下多少"></i></span>
+                            <span id="net-profit-margin" class="white-text">0%</span>
+                            <div class="form-text text-light">(最終賺到的錢 ÷ 總收入) × 100%</div>
+                          </div>
+                        </div>
+                        
+                        <div class="npm-analysis mt-4">
+                          <h6 class="mb-3">簡易分析</h6>
+                          <div class="analysis-container p-3 rounded">
+                            <p id="npm-analysis-text">請輸入數據並計算</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i>
+              <span>提示：這些財務指標可幫助您分析業務盈利能力和營運效率，做出更明智的商業決策。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入 Bootstrap 和 JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 引入自定義 JavaScript -->
+  <script src="finance.js"></script>
+</body>
+</html> 

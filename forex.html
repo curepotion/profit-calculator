@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外匯計算器</title>
+  <!-- 引入 Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 引入 Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- 引入自定義 CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- 側邊欄 -->
+    <div class="sidebar">
+      <button id="sidebar-toggle" class="sidebar-toggle" title="切換側邊欄">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="sidebar-header">
+        <h4>計算工具</h4>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="index.html"><i class="fas fa-home me-2"></i>首頁</a></li>
+        <li><a href="index.html"><i class="fas fa-calculator me-2"></i>利潤計算器</a></li>
+        <li><a href="kelly.html"><i class="fas fa-chart-line me-2"></i>Kelly準則</a></li>
+        <li><a href="forex.html" class="active"><i class="fas fa-dollar-sign me-2"></i>外匯計算器</a></li>
+        <li><a href="finance.html"><i class="fas fa-briefcase me-2"></i>財務計算器</a></li>
+        <li><a href="#"><i class="fas fa-cog me-2"></i>設定</a></li>
+        <li><a href="#"><i class="fas fa-question-circle me-2"></i>幫助</a></li>
+      </ul>
+    </div>
+
+    <!-- 主要內容區 -->
+    <div class="main-content">
+      <div class="container">
+        <div class="profit-generator">
+          <h2 class="text-center mb-4">外匯計算器</h2>
+          
+          <div class="forex-container">
+            <!-- 外匯計算區 -->
+            <div class="card-container mb-4">
+              <h5 class="section-title">點值計算器</h5>
+              
+              <div class="mb-4">
+                <label for="currency-pair" class="form-label">貨幣對</label>
+                <select id="currency-pair" class="form-select">
+                  <option value="EURUSD">EUR/USD</option>
+                  <option value="GBPUSD">GBP/USD</option>
+                  <option value="USDJPY">USD/JPY</option>
+                  <option value="AUDUSD">AUD/USD</option>
+                  <option value="USDCHF">USD/CHF</option>
+                  <option value="USDCAD">USD/CAD</option>
+                  <option value="NZDUSD">NZD/USD</option>
+                  <option value="XAUUSD">XAU/USD (黃金)</option>
+                </select>
+                <div class="form-text text-light">選擇交易的貨幣對</div>
+              </div>
+              
+              <div class="mb-4">
+                <label for="lot-size" class="form-label">交易手數</label>
+                <div class="lot-size-control">
+                  <div class="lot-buttons">
+                    <button id="decrease-lot-large" class="btn btn-gray btn-sm" title="減少 0.1 手">-0.1</button>
+                    <button id="decrease-lot-small" class="btn btn-gray btn-sm" title="減少 0.01 手">-0.01</button>
+                    <input type="number" id="lot-size" class="form-control" min="0.01" step="0.01" value="1.0">
+                    <button id="increase-lot-small" class="btn btn-gray btn-sm" title="增加 0.01 手">+0.01</button>
+                    <button id="increase-lot-large" class="btn btn-gray btn-sm" title="增加 0.1 手">+0.1</button>
+                  </div>
+                </div>
+                <div class="form-text text-light">調整交易的手數大小</div>
+              </div>
+              
+              <div class="mb-4">
+                <label for="pips" class="form-label">點數</label>
+                <input type="number" id="pips" class="form-control" min="0" value="10">
+                <div class="form-text text-light">設定移動的點數</div>
+              </div>
+              
+              <div class="d-grid">
+                <button id="calculate-forex" class="btn btn-gold mb-4">計算</button>
+              </div>
+              
+              <!-- 即時匯率數據 -->
+              <div class="exchange-rate-container mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h6 class="mb-0">即時匯率 <span class="auto-update-badge">每5秒自動更新</span></h6>
+                  <button id="refresh-rate" class="btn btn-sm btn-outline-light">
+                    <i class="fas fa-sync-alt"></i> 立即更新
+                  </button>
+                </div>
+                <div class="current-rate mt-2">
+                  <span id="rate-usdtwd" class="rate-badge">USD/TWD: <span id="usdtwd-value">載入中...</span></span>
+                  <div class="text-light small">最後更新時間：<span id="last-updated">--</span></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 結果顯示 -->
+            <div class="card-container">
+              <h5 class="section-title">計算結果</h5>
+              <div class="forex-results mb-4">
+                <div class="result-item">
+                  <span>每點價值 (USD)</span>
+                  <span id="pip-value" class="gold-text">$0.00</span>
+                </div>
+                <div class="result-item">
+                  <span>總損益 (USD)</span>
+                  <span id="total-pnl-usd" class="white-text">$0.00</span>
+                </div>
+                <div class="result-item">
+                  <span>總損益 (TWD)</span>
+                  <span id="total-pnl-twd" class="white-text">NT$0.00</span>
+                </div>
+                <div class="result-item">
+                  <span>獲利/風險比率</span>
+                  <span id="risk-reward" class="white-text">0.00</span>
+                </div>
+              </div>
+              
+              <!-- 詳細結果 -->
+              <div class="detailed-results">
+                <h6 class="mb-3">詳細信息</h6>
+                <div class="table-responsive">
+                  <table class="table table-dark table-hover">
+                    <thead>
+                      <tr>
+                        <th>項目</th>
+                        <th>值</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>貨幣對</td>
+                        <td id="detail-currency-pair">-</td>
+                      </tr>
+                      <tr>
+                        <td>手數</td>
+                        <td id="detail-lot-size">-</td>
+                      </tr>
+                      <tr>
+                        <td>點數</td>
+                        <td id="detail-pips">-</td>
+                      </tr>
+                      <tr>
+                        <td>點值 (USD)</td>
+                        <td id="detail-pip-value">-</td>
+                      </tr>
+                      <tr>
+                        <td>USD/TWD 匯率</td>
+                        <td id="detail-exchange-rate">-</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <div class="alert alert-info">
+                  <i class="fas fa-info-circle me-2"></i>
+                  <span>注意：實際損益可能因交易條件與經紀商的點差等因素而異。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入 Bootstrap 和 JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 引入自定義 JavaScript -->
+  <script src="forex.js"></script>
+</body>
+</html> 
