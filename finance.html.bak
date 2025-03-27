@@ -460,46 +460,54 @@
                         <h5 class="text-center mb-3">計算結果</h5>
                         <div class="trade-bep-results">
                           <div class="row mb-4">
-                            <div class="col-12">
+                            <div class="col-md-6">
                               <div class="card-container p-3">
                                 <h6 class="text-warning">交易效益分析</h6>
-                                <div class="row">
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>平均每筆交易淨利 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="考慮勝率、獲利/虧損和手續費後的平均淨利"></i></span>
-                                      <span id="avg-trade-profit" class="gold-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>交易模式 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到盈利所需的贏輸交易比例"></i></span>
-                                      <span id="trade-pattern" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>每日所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每天至少需要的交易量"></i></span>
-                                      <span id="daily-trades-needed" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>每週所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每週至少需要的交易量"></i></span>
-                                      <span id="weekly-trades-needed" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>實際每日交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="您設定的每日交易次數"></i></span>
-                                      <span id="actual-daily-trades" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 col-lg-2 mb-3">
-                                    <div class="result-item">
-                                      <span>每月總交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月20個交易日的總交易次數"></i></span>
-                                      <span id="total-monthly-trades" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
+                                <div class="result-item">
+                                  <span>平均每筆交易淨利 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="考慮勝率、獲利/虧損和手續費後的平均淨利"></i></span>
+                                  <span id="avg-trade-profit" class="gold-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>交易模式 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到盈利所需的贏輸交易比例"></i></span>
+                                  <span id="trade-pattern" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>每日所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每天至少需要的交易量"></i></span>
+                                  <span id="daily-trades-needed" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>每週所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每週至少需要的交易量"></i></span>
+                                  <span id="weekly-trades-needed" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>每月所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每月至少需要的交易量"></i></span>
+                                  <span id="monthly-trades-needed" class="white-text">計算中...</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="card-container p-3">
+                                <h6 class="text-warning">交易效益分析</h6>
+                                <div class="result-item">
+                                  <span>平均每筆交易淨利 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="考慮勝率、獲利/虧損和手續費後的平均淨利"></i></span>
+                                  <span id="avg-trade-profit" class="gold-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>交易模式 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到盈利所需的贏輸交易比例"></i></span>
+                                  <span id="trade-pattern" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>每日所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡每天至少需要的交易量"></i></span>
+                                  <span id="daily-trades-needed" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>實際每日交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="您設定的每日交易次數"></i></span>
+                                  <span id="actual-daily-trades" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>每月總交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月20個交易日的總交易次數"></i></span>
+                                  <span id="total-monthly-trades" class="white-text">計算中...</span>
                                 </div>
                               </div>
                             </div>
@@ -509,49 +517,33 @@
                             <div class="col-12">
                               <div class="card-container p-3">
                                 <h6 class="text-warning">財務分析</h6>
-                                <div class="row">
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>每月固定成本 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月固定支出總額"></i></span>
-                                      <span id="monthly-fixed-cost" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>損益平衡所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月至少需要多少交易次數才能開始獲利"></i></span>
-                                      <span id="break-even-trades" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>損益平衡贏/輸次數 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡所需的贏輸次數明細"></i></span>
-                                      <span id="break-even-win-loss" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>目標所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到目標利潤所需的每月交易次數"></i></span>
-                                      <span id="target-trades" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>目標贏/輸次數 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到目標利潤所需的贏輸次數明細"></i></span>
-                                      <span id="target-win-loss" class="white-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>預計月淨利 (美元) <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="按照現有交易頻率計算的月淨利"></i></span>
-                                      <span id="monthly-net-profit-usd" class="gold-text">計算中...</span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-3 mb-3">
-                                    <div class="result-item">
-                                      <span>預計月淨利 (台幣) <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="按照匯率換算後的月淨利"></i></span>
-                                      <span id="monthly-net-profit-twd" class="gold-text">計算中...</span>
-                                    </div>
-                                  </div>
+                                <div class="result-item">
+                                  <span>每月固定成本 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月固定支出總額"></i></span>
+                                  <span id="monthly-fixed-cost" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>損益平衡所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="每月至少需要多少交易次數才能開始獲利"></i></span>
+                                  <span id="break-even-trades" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>損益平衡贏/輸次數 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到損益平衡所需的贏輸次數明細"></i></span>
+                                  <span id="break-even-win-loss" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>目標所需交易量 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到目標利潤所需的每月交易次數"></i></span>
+                                  <span id="target-trades" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>目標贏/輸次數 <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="達到目標利潤所需的贏輸次數明細"></i></span>
+                                  <span id="target-win-loss" class="white-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>預計月淨利 (美元) <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="按照現有交易頻率計算的月淨利"></i></span>
+                                  <span id="monthly-net-profit-usd" class="gold-text">計算中...</span>
+                                </div>
+                                <div class="result-item mt-2">
+                                  <span>預計月淨利 (台幣) <i class="fas fa-question-circle" data-bs-toggle="tooltip" title="按照匯率換算後的月淨利"></i></span>
+                                  <span id="monthly-net-profit-twd" class="gold-text">計算中...</span>
                                 </div>
                               </div>
                             </div>
@@ -575,55 +567,12 @@
                           <div class="col-12">
                             <div class="card-container p-3">
                               <h6 class="text-warning">敏感性分析</h6>
-                              <div class="table-responsive">
-                                <table class="table table-dark table-bordered" id="sensitivity-table">
-                                  <thead>
-                                    <tr>
-                                      <th>變動參數</th>
-                                      <th>-30%</th>
-                                      <th>-20%</th>
-                                      <th>-10%</th>
-                                      <th>基準</th>
-                                      <th>+10%</th>
-                                      <th>+20%</th>
-                                      <th>+30%</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>勝率變化</td>
-                                      <td class="win-rate-minus-30">--</td>
-                                      <td class="win-rate-minus-20">--</td>
-                                      <td class="win-rate-minus-10">--</td>
-                                      <td class="win-rate-base">--</td>
-                                      <td class="win-rate-plus-10">--</td>
-                                      <td class="win-rate-plus-20">--</td>
-                                      <td class="win-rate-plus-30">--</td>
-                                    </tr>
-                                    <tr>
-                                      <td>獲利金額變化</td>
-                                      <td class="profit-minus-30">--</td>
-                                      <td class="profit-minus-20">--</td>
-                                      <td class="profit-minus-10">--</td>
-                                      <td class="profit-base">--</td>
-                                      <td class="profit-plus-10">--</td>
-                                      <td class="profit-plus-20">--</td>
-                                      <td class="profit-plus-30">--</td>
-                                    </tr>
-                                    <tr>
-                                      <td>虧損金額變化</td>
-                                      <td class="loss-minus-30">--</td>
-                                      <td class="loss-minus-20">--</td>
-                                      <td class="loss-minus-10">--</td>
-                                      <td class="loss-base">--</td>
-                                      <td class="loss-plus-10">--</td>
-                                      <td class="loss-plus-20">--</td>
-                                      <td class="loss-plus-30">--</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
+                              
+                              <h6 class="text-warning">敏感性分析 (所需交易次數)</h6>
+
+                              <div class="card-container p-3">
+                                <h6 class="text-warning">敏感性分析 (所需交易次數)</h6>
                               </div>
-                              <p class="small text-light mt-2">表格顯示不同參數變化時達到目標利潤所需的「交易次數(筆)」。綠色表示交易次數較少(優)，紅色表示交易次數較多(劣)。</p>
                             </div>
                           </div>
                         </div>

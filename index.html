@@ -10,6 +10,244 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- 引入自定義 CSS -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 基本樣式 */
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Microsoft JhengHei', sans-serif;
+    }
+
+    /* 側邊欄樣式 */
+    .sidebar {
+      background-color: #2d2d2d;
+      min-height: 100vh;
+      padding: 20px;
+      transition: all 0.3s ease;
+      border-right: 1px solid #3d3d3d;
+    }
+
+    .sidebar.collapsed {
+      margin-left: -250px;
+    }
+
+    .sidebar-header {
+      padding: 15px 0;
+      border-bottom: 1px solid #3d3d3d;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-header h4 {
+      color: #ffd700;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 5px;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-menu a:hover {
+      background-color: #3d3d3d;
+      color: #ffd700;
+    }
+
+    .sidebar-menu a.active {
+      background-color: #3d3d3d;
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .sidebar-menu i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    .sidebar-toggle {
+      position: absolute;
+      top: 20px;
+      right: -15px;
+      background-color: #2d2d2d;
+      border: 1px solid #3d3d3d;
+      color: #ffffff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #3d3d3d;
+      color: #ffd700;
+    }
+
+    /* 主要內容區樣式 */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    .main-content.expanded {
+      margin-left: 0;
+    }
+
+    /* 卡片容器樣式 */
+    .card-container {
+      background-color: #2d2d2d;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* 結果項目樣式 */
+    .result-item {
+      background-color: #3d3d3d;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 按鈕樣式 */
+    .btn-gray {
+      background-color: #4d4d4d;
+      color: #ffffff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-gray:hover {
+      background-color: #5d5d5d;
+    }
+
+    /* 輸入框樣式 */
+    .form-control {
+      background-color: #3d3d3d;
+      border: 1px solid #4d4d4d;
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 100px;
+      text-align: center;
+    }
+
+    .form-control:focus {
+      background-color: #3d3d3d;
+      border-color: #6d6d6d;
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    /* 高亮效果 */
+    .highlight {
+      animation: highlight 0.3s ease;
+    }
+
+    @keyframes highlight {
+      0% { background-color: #3d3d3d; }
+      50% { background-color: #5d5d5d; }
+      100% { background-color: #3d3d3d; }
+    }
+
+    /* 文字顏色 */
+    .gold-text {
+      color: #ffd700;
+    }
+
+    .red-text {
+      color: #ff4444;
+    }
+
+    .white-text {
+      color: #ffffff;
+    }
+
+    /* 展開/收合按鈕樣式 */
+    .btn-link {
+      color: #ffd700;
+      text-decoration: none;
+      padding: 0;
+      margin-left: 10px;
+    }
+
+    .btn-link:hover {
+      color: #ffed4a;
+    }
+
+    /* 年度詳細資訊樣式 */
+    .year-details {
+      background-color: #3d3d3d;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .monthly-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .monthly-details div {
+      background-color: #4d4d4d;
+      padding: 8px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 響應式設計 */
+    @media (max-width: 768px) {
+      .sidebar {
+        margin-left: -250px;
+      }
+
+      .sidebar.collapsed {
+        margin-left: 0;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .main-content.expanded {
+        margin-left: 250px;
+      }
+
+      .monthly-details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="main-wrapper">
@@ -43,40 +281,53 @@
             <div class="income-section">
               <h5 class="section-title w-100">收入設定</h5>
               
-              <!-- 本金設定 -->
-              <div class="income-item">
-                <div class="mb-3 text-center">
-                  <label for="principal" class="form-label">本金 (元)</label>
-                  <div class="button-row">
-                    <button id="decrease-100k" class="btn btn-gray">-10萬</button>
-                    <button id="decrease-10k" class="btn btn-gray">-1萬</button>
-                    <button id="increase-10k" class="btn btn-gray">+1萬</button>
-                    <button id="increase-100k" class="btn btn-gray">+10萬</button>
+              <div class="row">
+                <!-- 本金和月報酬率區塊 -->
+                <div class="col-md-8">
+                  <div class="card-container p-3 mb-3">
+                    <h6 class="text-warning mb-3">本金與月報酬率設定</h6>
+                    
+                    <!-- 本金設定 -->
+                    <div class="mb-3">
+                      <label for="principal" class="form-label">本金 (元)</label>
+                      <div class="button-row mb-2">
+                        <button id="decrease-100k" class="btn btn-gray">-10萬</button>
+                        <button id="decrease-10k" class="btn btn-gray">-1萬</button>
+                        <button id="increase-10k" class="btn btn-gray">+1萬</button>
+                        <button id="increase-100k" class="btn btn-gray">+10萬</button>
+                      </div>
+                      <input type="number" id="principal" class="form-control w-100" value="200000" min="0">
+                    </div>
+                    
+                    <!-- 月報酬率 -->
+                    <div>
+                      <label for="rate" class="form-label">月報酬率 (%)</label>
+                      <input type="number" id="rate" class="form-control w-100" value="7" min="0" max="100">
+                    </div>
                   </div>
-                  <input type="number" id="principal" class="form-control w-100 mt-2" value="0" min="0">
                 </div>
-              </div>
-              
-              <!-- 月報酬率 -->
-              <div class="income-item">
-                <div class="mb-3 text-center">
-                  <label for="rate" class="form-label">月報酬率 (%)</label>
-                  <input type="number" id="rate" class="form-control w-100" value="0" min="0" max="100">
-                </div>
-              </div>
-              
-              <!-- 月薪 -->
-              <div class="income-item">
-                <div class="mb-3 text-center">
-                  <label for="salary" class="form-label">月薪 (元)</label>
-                  <input type="number" id="salary" class="form-control w-100" value="0" min="0">
+                
+                <!-- 月薪區塊 -->
+                <div class="col-md-4">
+                  <div class="card-container p-3 mb-3">
+                    <h6 class="text-warning mb-3">月薪設定</h6>
+                    <div>
+                      <label for="salary" class="form-label">月薪 (元)</label>
+                      <input type="number" id="salary" class="form-control w-100" value="0" min="0">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             
             <!-- 消費項目 -->
             <div class="expenses-section">
-              <h5 class="section-title">每月消費項目</h5>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="section-title mb-0">每月消費項目</h5>
+                <button id="add-expense" class="btn btn-gray">
+                  <i class="fas fa-plus me-2"></i>新增項目
+                </button>
+              </div>
               <div id="expenses" class="expenses-container">
                 <!-- 動態生成消費欄位 -->
               </div>
@@ -112,7 +363,185 @@
                 <span id="yearly-surplus" class="white-text">0</span>
               </div>
             </div>
+
+            <!-- 複利計算結果 -->
+            <div class="compound-results mt-4">
+              <h5 class="text-center mb-3">複利計算結果</h5>
+              
+              <!-- 未來五年複利 -->
+              <div class="card-container p-3 mb-4">
+                <h6 class="text-warning">未來五年複利計算</h6>
+                <div class="row">
+                  <div class="col-md-4 col-lg-2 mb-3">
+                    <div class="result-item">
+                      <span>第一年</span>
+                      <span id="year-1-compound" class="gold-text">0</span>
+                      <button class="btn btn-sm btn-link" onclick="toggleYearDetails(1)">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="year-1-details" class="year-details" style="display: none;">
+                      <div class="monthly-details">
+                        <div>第1個月: <span id="year-1-month-1" class="gold-text">0</span></div>
+                        <div>第2個月: <span id="year-1-month-2" class="gold-text">0</span></div>
+                        <div>第3個月: <span id="year-1-month-3" class="gold-text">0</span></div>
+                        <div>第4個月: <span id="year-1-month-4" class="gold-text">0</span></div>
+                        <div>第5個月: <span id="year-1-month-5" class="gold-text">0</span></div>
+                        <div>第6個月: <span id="year-1-month-6" class="gold-text">0</span></div>
+                        <div>第7個月: <span id="year-1-month-7" class="gold-text">0</span></div>
+                        <div>第8個月: <span id="year-1-month-8" class="gold-text">0</span></div>
+                        <div>第9個月: <span id="year-1-month-9" class="gold-text">0</span></div>
+                        <div>第10個月: <span id="year-1-month-10" class="gold-text">0</span></div>
+                        <div>第11個月: <span id="year-1-month-11" class="gold-text">0</span></div>
+                        <div>第12個月: <span id="year-1-month-12" class="gold-text">0</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-lg-2 mb-3">
+                    <div class="result-item">
+                      <span>第二年</span>
+                      <span id="year-2-compound" class="gold-text">0</span>
+                      <button class="btn btn-sm btn-link" onclick="toggleYearDetails(2)">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="year-2-details" class="year-details" style="display: none;">
+                      <div class="monthly-details">
+                        <div>第1個月: <span id="year-2-month-1" class="gold-text">0</span></div>
+                        <div>第2個月: <span id="year-2-month-2" class="gold-text">0</span></div>
+                        <div>第3個月: <span id="year-2-month-3" class="gold-text">0</span></div>
+                        <div>第4個月: <span id="year-2-month-4" class="gold-text">0</span></div>
+                        <div>第5個月: <span id="year-2-month-5" class="gold-text">0</span></div>
+                        <div>第6個月: <span id="year-2-month-6" class="gold-text">0</span></div>
+                        <div>第7個月: <span id="year-2-month-7" class="gold-text">0</span></div>
+                        <div>第8個月: <span id="year-2-month-8" class="gold-text">0</span></div>
+                        <div>第9個月: <span id="year-2-month-9" class="gold-text">0</span></div>
+                        <div>第10個月: <span id="year-2-month-10" class="gold-text">0</span></div>
+                        <div>第11個月: <span id="year-2-month-11" class="gold-text">0</span></div>
+                        <div>第12個月: <span id="year-2-month-12" class="gold-text">0</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-lg-2 mb-3">
+                    <div class="result-item">
+                      <span>第三年</span>
+                      <span id="year-3-compound" class="gold-text">0</span>
+                      <button class="btn btn-sm btn-link" onclick="toggleYearDetails(3)">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="year-3-details" class="year-details" style="display: none;">
+                      <div class="monthly-details">
+                        <div>第1個月: <span id="year-3-month-1" class="gold-text">0</span></div>
+                        <div>第2個月: <span id="year-3-month-2" class="gold-text">0</span></div>
+                        <div>第3個月: <span id="year-3-month-3" class="gold-text">0</span></div>
+                        <div>第4個月: <span id="year-3-month-4" class="gold-text">0</span></div>
+                        <div>第5個月: <span id="year-3-month-5" class="gold-text">0</span></div>
+                        <div>第6個月: <span id="year-3-month-6" class="gold-text">0</span></div>
+                        <div>第7個月: <span id="year-3-month-7" class="gold-text">0</span></div>
+                        <div>第8個月: <span id="year-3-month-8" class="gold-text">0</span></div>
+                        <div>第9個月: <span id="year-3-month-9" class="gold-text">0</span></div>
+                        <div>第10個月: <span id="year-3-month-10" class="gold-text">0</span></div>
+                        <div>第11個月: <span id="year-3-month-11" class="gold-text">0</span></div>
+                        <div>第12個月: <span id="year-3-month-12" class="gold-text">0</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-lg-2 mb-3">
+                    <div class="result-item">
+                      <span>第四年</span>
+                      <span id="year-4-compound" class="gold-text">0</span>
+                      <button class="btn btn-sm btn-link" onclick="toggleYearDetails(4)">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="year-4-details" class="year-details" style="display: none;">
+                      <div class="monthly-details">
+                        <div>第1個月: <span id="year-4-month-1" class="gold-text">0</span></div>
+                        <div>第2個月: <span id="year-4-month-2" class="gold-text">0</span></div>
+                        <div>第3個月: <span id="year-4-month-3" class="gold-text">0</span></div>
+                        <div>第4個月: <span id="year-4-month-4" class="gold-text">0</span></div>
+                        <div>第5個月: <span id="year-4-month-5" class="gold-text">0</span></div>
+                        <div>第6個月: <span id="year-4-month-6" class="gold-text">0</span></div>
+                        <div>第7個月: <span id="year-4-month-7" class="gold-text">0</span></div>
+                        <div>第8個月: <span id="year-4-month-8" class="gold-text">0</span></div>
+                        <div>第9個月: <span id="year-4-month-9" class="gold-text">0</span></div>
+                        <div>第10個月: <span id="year-4-month-10" class="gold-text">0</span></div>
+                        <div>第11個月: <span id="year-4-month-11" class="gold-text">0</span></div>
+                        <div>第12個月: <span id="year-4-month-12" class="gold-text">0</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-lg-2 mb-3">
+                    <div class="result-item">
+                      <span>第五年</span>
+                      <span id="year-5-compound" class="gold-text">0</span>
+                      <button class="btn btn-sm btn-link" onclick="toggleYearDetails(5)">
+                        <i class="fas fa-chevron-down"></i>
+                      </button>
+                    </div>
+                    <div id="year-5-details" class="year-details" style="display: none;">
+                      <div class="monthly-details">
+                        <div>第1個月: <span id="year-5-month-1" class="gold-text">0</span></div>
+                        <div>第2個月: <span id="year-5-month-2" class="gold-text">0</span></div>
+                        <div>第3個月: <span id="year-5-month-3" class="gold-text">0</span></div>
+                        <div>第4個月: <span id="year-5-month-4" class="gold-text">0</span></div>
+                        <div>第5個月: <span id="year-5-month-5" class="gold-text">0</span></div>
+                        <div>第6個月: <span id="year-5-month-6" class="gold-text">0</span></div>
+                        <div>第7個月: <span id="year-5-month-7" class="gold-text">0</span></div>
+                        <div>第8個月: <span id="year-5-month-8" class="gold-text">0</span></div>
+                        <div>第9個月: <span id="year-5-month-9" class="gold-text">0</span></div>
+                        <div>第10個月: <span id="year-5-month-10" class="gold-text">0</span></div>
+                        <div>第11個月: <span id="year-5-month-11" class="gold-text">0</span></div>
+                        <div>第12個月: <span id="year-5-month-12" class="gold-text">0</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新增項目 Modal -->
+  <div class="modal fade" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="addExpenseModalLabel">新增消費項目</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="newExpenseName" class="form-label">項目名稱</label>
+            <input type="text" class="form-control" id="newExpenseName" placeholder="請輸入項目名稱">
+          </div>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-gray" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-gray" id="confirmAdd">確定新增</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 刪除確認 Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="deleteConfirmModalLabel">確認刪除</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          確定要刪除「<span id="deleteItemName"></span>」這個消費項目嗎？
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-gray" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-gray" id="confirmDelete">確定刪除</button>
         </div>
       </div>
     </div>
